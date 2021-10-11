@@ -11,7 +11,7 @@ exports.config = {
     Puppeteer: {
       url: 'https://www.kompas.id',
       show: true,
-      windowSize: '1200x900'
+      windowSize: '1200x600'
     }
   },
   include: {

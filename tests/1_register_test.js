@@ -1,6 +1,9 @@
 Feature('Register');
 
 const random = (Math.random() + 1).toString(36).substring(7);
+const email = `${random}@gmail.com`;
+const password = "B3rnando'";
+const createFile = require('../utils/file')
 
 Scenario('I See Register Page', ({ I }) => {
     goToRegisterPage(I)
@@ -70,12 +73,14 @@ Scenario('Should Success Registered', async ({ I }) => {
     goToRegisterPage(I);
 
     I.fillField('#firstName', 'Bernand');
-    I.fillField('#email', `${random}@gmail.com`);
-    I.fillField('#password', "B3rnando'");
+    I.fillField('#email', email);
+    I.fillField('#password', password);
     I.scrollPageToBottom()
-    I.wait(30)
+    I.retry(3).wait(60)
     I.click('#daftar');
-    I.see('Mengarahkan ke aktivitas Anda sebelumnya')
+    I.see('Mengarahkan ke aktivitas Anda sebelumnya');
+
+    createFile({username: email, password: password})
 });
 
 goToRegisterPage = (I) => {
